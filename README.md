@@ -14,12 +14,10 @@ I share what I build and explore here on GitHub.
 
 ## 📈 GitHub activity
 
-<!-- activity-counts:start -->
-![Issues opened: pending](https://img.shields.io/badge/Issues-pending-238636?style=flat-square)
-![Pull requests opened: pending](https://img.shields.io/badge/Pull%20requests-pending-8957e5?style=flat-square)
-<!-- activity-counts:end -->
-
-Lifetime totals for issues and pull requests I opened across public and accessible private repositories. Updated automatically every six hours once configured.
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://github-stats-extended.vercel.app/api?username=aki0804&amp;show_icons=true&amp;include_all_commits=true&amp;hide_rank=true&amp;hide=contribs&amp;show=prs_merged,reviews,contributions&amp;number_format=long&amp;role=OWNER,ORGANIZATION_MEMBER,COLLABORATOR&amp;hide_border=true&amp;bg_color=00000000&amp;theme=dark_github">
+  <img src="https://github-stats-extended.vercel.app/api?username=aki0804&amp;show_icons=true&amp;include_all_commits=true&amp;hide_rank=true&amp;hide=contribs&amp;show=prs_merged,reviews,contributions&amp;number_format=long&amp;role=OWNER,ORGANIZATION_MEMBER,COLLABORATOR&amp;hide_border=true&amp;bg_color=00000000&amp;theme=light_github" alt="GitHub statistics: commits, pull requests, issues, merged pull requests, reviews, and total contributions">
+</picture>
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://streak-stats.demolab.com/?user=aki0804&amp;locale=en&amp;theme=github-dark-blue&amp;hide_border=true&amp;background=00000000">
