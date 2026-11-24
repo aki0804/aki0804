@@ -1,6 +1,6 @@
 # Hi, I'm Aki 👋
 
-High school student & part-time public servant in Japan.
+High school student in Japan.
 
 I share what I build and explore here on GitHub.
 
