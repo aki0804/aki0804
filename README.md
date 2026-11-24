@@ -14,6 +14,13 @@ I share what I build and explore here on GitHub.
 
 ## 📈 GitHub activity
 
+<!-- activity-counts:start -->
+![Issues opened: pending](https://img.shields.io/badge/Issues-pending-238636?style=flat-square)
+![Pull requests opened: pending](https://img.shields.io/badge/Pull%20requests-pending-8957e5?style=flat-square)
+<!-- activity-counts:end -->
+
+Lifetime totals for issues and pull requests I opened across public and accessible private repositories. Updated automatically every six hours once configured.
+
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://streak-stats.demolab.com/?user=aki0804&amp;locale=en&amp;theme=github-dark-blue&amp;hide_border=true&amp;background=00000000">
   <img src="https://streak-stats.demolab.com/?user=aki0804&amp;locale=en&amp;theme=default&amp;hide_border=true&amp;background=00000000" alt="Total contributions and activity streaks">
