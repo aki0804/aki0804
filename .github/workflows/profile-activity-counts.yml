@@ -1,0 +1,109 @@
+name: Update profile activity counts
+
+on:
+  schedule:
+    - cron: '23 */6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: profile-activity-counts
+  cancel-in-progress: false
+
+jobs:
+  update:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Count authored issues and pull requests and update README
+        env:
+          STATS_TOKEN: ${{ secrets.PROFILE_STATS_TOKEN }}
+          WRITE_TOKEN: ${{ github.token }}
+        run: |
+          python3 - <<'PY'
+          import base64
+          import json
+          import os
+          import urllib.parse
+          import urllib.request
+
+          stats_token = os.environ["STATS_TOKEN"]
+          if not stats_token:
+              raise SystemExit("Configure the PROFILE_STATS_TOKEN repository secret before running this workflow.")
+
+          api_url = os.environ["GITHUB_API_URL"]
+          owner, repo = os.environ["GITHUB_REPOSITORY"].split("/", 1)
+
+          def api(path, token, data=None):
+              headers = {
+                  "Authorization": f"Bearer {token}",
+                  "Accept": "application/vnd.github+json",
+                  "X-GitHub-Api-Version": "2022-11-28",
+              }
+              payload = json.dumps(data).encode("utf-8") if data is not None else None
+              if payload is not None:
+                  headers["Content-Type"] = "application/json"
+              req = urllib.request.Request(
+                  api_url + path, data=payload, headers=headers,
+                  method="PUT" if payload is not None else "GET",
+              )
+              with urllib.request.urlopen(req, timeout=30) as response:
+                  return json.load(response)
+
+          # Ensure the credential belongs to the profile owner.
+          if api("/user", stats_token)["login"].lower() != owner.lower():
+              raise SystemExit("PROFILE_STATS_TOKEN must belong to the profile owner.")
+
+          def count(kind):
+              query = urllib.parse.urlencode({
+                  "q": f"author:{owner} is:{kind}",
+                  "per_page": 1,
+              })
+              result = api("/search/issues?" + query, stats_token)
+              if result.get("incomplete_results") is not False:
+                  raise SystemExit(f"Incomplete {kind} search; keeping previous counts.")
+              total = result["total_count"]
+              if type(total) is not int or total < 0:
+                  raise SystemExit("Invalid search count; keeping previous counts.")
+              return total
+
+          issues = count("issue")
+          prs = count("pr")
+
+          # Only aggregate counts are published, never private repo names or contents.
+          start = "<!-- activity-counts:start -->"
+          end = "<!-- activity-counts:end -->"
+          block = "\n".join([
+              start,
+              f"![Issues opened: {issues}](https://img.shields.io/badge/Issues-{issues}-238636?style=flat-square)",
+              f"![Pull requests opened: {prs}](https://img.shields.io/badge/Pull%20requests-{prs}-8957e5?style=flat-square)",
+              end,
+          ])
+
+          # The repository-scoped token is used separately for README writes.
+          token = os.environ["WRITE_TOKEN"]
+          path = f"/repos/{owner}/{repo}/contents/README.md"
+          file = api(path + "?ref=main", token)
+          current = base64.b64decode(file["content"]).decode("utf-8")
+          if current.count(start) != 1 or current.count(end) != 1:
+              raise SystemExit("Expected exactly one activity counts block.")
+          first = current.index(start)
+          last = current.index(end)
+          if last < first:
+              raise SystemExit("Activity count markers are out of order.")
+          updated = current[:first] + block + current[last + len(end):]
+
+          if updated == current:
+              print("Activity counts have not changed.")
+          else:
+              api(path, token, {
+                  "message": "chore: update profile activity counts",
+                  "content": base64.b64encode(updated.encode("utf-8")).decode("ascii"),
+                  "sha": file["sha"],
+                  "branch": "main",
+              })
+              print("Profile activity counts updated.")
+          PY
