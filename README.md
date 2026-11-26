@@ -20,11 +20,6 @@ I share what I build and explore here on GitHub.
 </picture>
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./assets/contribution-overview.dark.svg">
-  <img src="./assets/contribution-overview.light.svg" alt="Contribution overview: distribution of commits, pull requests, code reviews and issues">
-</picture>
-
-<picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://streak-stats.demolab.com/?user=aki0804&amp;locale=en&amp;theme=github-dark-blue&amp;hide_border=true&amp;background=00000000">
   <img src="https://streak-stats.demolab.com/?user=aki0804&amp;locale=en&amp;theme=default&amp;hide_border=true&amp;background=00000000" alt="Total contributions and activity streaks">
 </picture>
