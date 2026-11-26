@@ -1,15 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="500" height="342" viewBox="0 0 500 342" role="img" aria-label="Contribution overview: commits 100%, pull requests 0%, code review 0%, issues 0%">
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="342" viewBox="0 0 500 342" role="img" aria-label="Contribution overview: awaiting account-level statistics">
 <rect x=".5" y=".5" width="499" height="341" rx="10" fill="#f6f8fa" stroke="#d0d7de"/>
 <g font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" text-anchor="middle" fill="#24292f">
 <text x="250" y="29" font-size="18" font-weight="600">Contribution overview</text>
-<text x="250" y="50" font-size="12" fill="#57606a">Past year · Visible contributions</text>
-<path d="M138 173H362 M250 61V285" stroke="#1a7f37" stroke-width="2" stroke-linecap="round" transform="translate(0 10)"/>
-<g transform="translate(0 10)">
-<polygon points="250.00,173.00 250.00,173.00 250.00,173.00 138.00,173.00" fill="#1a7f37" fill-opacity=".35" stroke="#1a7f37" stroke-width="1.5" stroke-linejoin="round"/>
-<circle cx="250.00" cy="173.00" r="3.5" fill="#f6f8fa" stroke="#1a7f37" stroke-width="2"/>
-<circle cx="250.00" cy="173.00" r="3.5" fill="#f6f8fa" stroke="#1a7f37" stroke-width="2"/>
-<circle cx="250.00" cy="173.00" r="3.5" fill="#f6f8fa" stroke="#1a7f37" stroke-width="2"/>
-<circle cx="138.00" cy="173.00" r="3.5" fill="#f6f8fa" stroke="#1a7f37" stroke-width="2"/>
-</g>
-<g font-size="14"><text x="250" y="66">0% · Code review</text><text x="375" y="179" text-anchor="start">0%</text><text x="375" y="197" text-anchor="start">Issues</text><text x="250" y="316">0% · Pull requests</text><text x="125" y="179" text-anchor="end">100%</text><text x="125" y="197" text-anchor="end">Commits</text></g>
+<text x="250" y="50" font-size="12" fill="#57606a">Awaiting account-level statistics</text>
+<path d="M138 183H362 M250 71V295" stroke="#d0d7de" stroke-width="2" stroke-linecap="round"/>
+<g font-size="14" fill="#57606a"><text x="250" y="66">Code review</text><text x="375" y="188" text-anchor="start">Issues</text><text x="250" y="316">Pull requests</text><text x="125" y="188" text-anchor="end">Commits</text></g>
 </g></svg>
